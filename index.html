@@ -1,472 +1,1935 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UPSC MCQ Test</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Love Story 💕</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --bg2: #111111;
+    --tree: #e8e0d0;
+    --heart: #e8006f;
+    --heart-glow: #ff4da6;
+    --white: #fff;
+    --frame: #ffffff;
+    --text: #d4cfc9;
+    --date-color: #e8006f;
+    --caption: #b0aaaa;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--text);
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ======== HERO ======== */
+  .hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 60%, #1a0010 0%, #0d0d0d 70%);
+  }
+
+  /* Floating hearts background */
+  .floating-hearts {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .fheart {
+    position: absolute;
+    color: var(--heart);
+    font-size: 14px;
+    opacity: 0;
+    animation: floatHeart linear infinite;
+  }
+
+  @keyframes floatHeart {
+    0%   { opacity: 0; transform: translateY(0) scale(0.5) rotate(0deg); }
+    10%  { opacity: 0.6; }
+    90%  { opacity: 0.3; }
+    100% { opacity: 0; transform: translateY(-100vh) scale(1.2) rotate(30deg); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .hero-since {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.1rem;
+    color: var(--heart);
+    letter-spacing: 0.15em;
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.1;
+    opacity: 0;
+    animation: fadeUp 1s 0.6s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--heart-glow);
+  }
+
+  .hero-amp {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3em;
+    color: var(--heart);
+  }
+
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--caption);
+    margin-top: 18px;
+    letter-spacing: 0.1em;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    opacity: 0;
+    animation: fadeUp 1s 1.4s forwards;
+  }
+
+  .scroll-hint span {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--caption);
+    text-transform: uppercase;
+  }
+
+  .scroll-arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 1.5px solid var(--heart);
+    border-bottom: 1.5px solid var(--heart);
+    transform: rotate(45deg);
+    animation: bounce 1.5s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50% { transform: rotate(45deg) translateY(5px); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ======== TIMELINE WRAPPER ======== */
+  .timeline {
+    position: relative;
+    padding: 60px 0 120px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  /* Central trunk */
+  .trunk {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, var(--tree) 5%, var(--tree) 95%, transparent);
+    transform: translateX(-50%);
+  }
+
+  /* ======== TIMELINE NODE ======== */
+  .node {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 90px;
+    padding: 0 20px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .node.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Left branch nodes */
+  .node.left {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  /* Right branch nodes */
+  .node.right {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+  }
+
+  /* Branch line */
+  .branch {
+    position: absolute;
+    top: 60px;
+    height: 2px;
+    background: var(--tree);
+    width: 80px;
+  }
+
+  .node.left .branch {
+    right: calc(50% - 82px);
+    transform-origin: right center;
+  }
+
+  .node.right .branch {
+    left: calc(50% - 82px);
+    transform-origin: left center;
+  }
+
+  /* Heart on trunk */
+  .trunk-heart {
+    position: absolute;
+    top: 52px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 22px;
+    height: 22px;
+    z-index: 3;
+  }
+
+  .trunk-heart::before, .trunk-heart::after {
+    content: '';
+    position: absolute;
+    width: 11px;
+    height: 17px;
+    background: var(--heart);
+    border-radius: 11px 11px 0 0;
+    box-shadow: 0 0 10px var(--heart-glow), 0 0 20px var(--heart);
+  }
+
+  .trunk-heart::before {
+    left: 11px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+  }
+
+  .trunk-heart::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+  }
+
+  /* Content card */
+  .card {
+    width: calc(50% - 120px);
+    min-width: 260px;
+  }
+
+  .node.left .card  { margin-right: auto; margin-left: 20px; }
+  .node.right .card { margin-left: auto; margin-right: 20px; }
+
+  .card-date {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.25rem;
+    color: var(--heart);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card-date::after {
+    content: '♥';
+    font-size: 0.8rem;
+    color: var(--heart-glow);
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.3); }
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .card-desc {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--caption);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  /* ======== PHOTO SLIDER ======== */
+  .slider-wrap {
+    position: relative;
+    width: 100%;
+  }
+
+  .slider-overflow {
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .slider-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .slide {
+    min-width: 100%;
+    flex-shrink: 0;
+  }
+
+  .photo-frame {
+    background: var(--frame);
+    padding: 10px 10px 32px;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.15),
+      0 8px 40px rgba(0,0,0,0.7),
+      0 2px 8px rgba(0,0,0,0.4);
+    display: block;
+    position: relative;
+  }
+
+  .photo-frame::after {
+    content: '♥';
+    position: absolute;
+    bottom: 8px;
+    right: 14px;
+    color: var(--heart);
+    font-size: 0.75rem;
+    opacity: 0.7;
+  }
+
+  .photo-frame img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    background: #1a1a1a;
+  }
+
+  .photo-placeholder {
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(135deg, #1c1c1c 0%, #2a1520 50%, #1c1c1c 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #555;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+  }
+
+  .photo-placeholder .ph-icon {
+    font-size: 2rem;
+    color: #3a2030;
+  }
+
+  .photo-caption {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 30px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 0.85rem;
+    color: #888;
+    text-align: center;
+  }
+
+  /* Slider arrows */
+  .slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background: rgba(13,13,13,0.8);
+    border: 1px solid rgba(232,0,111,0.4);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    transition: all 0.25s;
+    padding: 0;
+    color: var(--heart);
+    font-size: 0.75rem;
+  }
+
+  .slider-btn:hover {
+    background: var(--heart);
+    border-color: var(--heart);
+    color: #fff;
+    box-shadow: 0 0 14px var(--heart);
+  }
+
+  .slider-btn.prev { left: -14px; }
+  .slider-btn.next { right: -14px; }
+
+  .slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #333;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .dot.active {
+    background: var(--heart);
+    box-shadow: 0 0 6px var(--heart);
+  }
+
+  /* ======== FOOTER ======== */
+  .footer {
+    text-align: center;
+    padding: 60px 20px 40px;
+    border-top: 1px solid #1e1e1e;
+  }
+
+  .footer-heart {
+    font-size: 2.5rem;
+    color: var(--heart);
+    display: block;
+    margin-bottom: 14px;
+    text-shadow: 0 0 20px var(--heart);
+    animation: pulse 2s infinite;
+  }
+
+  .footer-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3rem;
+    color: var(--caption);
+  }
+
+  .footer-add-btn {
+    margin-top: 28px;
+    display: inline-block;
+    padding: 10px 28px;
+    border: 1px solid var(--heart);
+    color: var(--heart);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+
+  .footer-add-btn:hover {
+    background: var(--heart);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(232,0,111,0.4);
+  }
+
+  /* ======== STAR FIELD ======== */
+  .stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle linear infinite;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.7; }
+  }
+
+  /* Section label */
+  .timeline-label {
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.6rem;
+    color: var(--heart);
+    margin-bottom: 50px;
+    opacity: 0;
+    animation: fadeUp 1s 1.6s forwards;
+  }
+
+  /* How to add photos note */
+  .add-photos-note {
+    background: rgba(232,0,111,0.05);
+    border: 1px dashed rgba(232,0,111,0.25);
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin: 0 auto 60px;
+    max-width: 600px;
+    font-size: 0.85rem;
+    color: #888;
+    line-height: 1.7;
+    text-align: center;
+  }
+
+  .add-photos-note strong {
+    color: var(--heart);
+  }
+
+  @media (max-width: 680px) {
+    .trunk { left: 28px; }
+    .node { flex-direction: column !important; padding: 0 10px 0 60px; }
+    .node.right { padding: 0 10px 0 60px; }
+    .card { width: 100%; margin: 0 !important; }
+    .branch { display: none; }
+    .trunk-heart { left: 28px; }
+  }
+</style>
 </head>
 <body>
-    <h1>UPSC MCQ Test</h1>
-    <form id="quizForm">
-        <!-- History: Chapter 1 -->
-        <h2>History: What, Where, How, and When</h2>
-        <div class="question">
-            <p>1. Which of the following is a primary source of history?</p>
-            <label><input type="radio" name="h1q1" value="b"> b) Ashokan edicts</label><br>
-            <label><input type="radio" name="h1q1" value="a"> a) A history textbook</label><br>
-            <label><input type="radio" name="h1q1" value="c"> c) A historian’s interpretation</label><br>
-            <label><input type="radio" name="h1q1" value="d"> d) A modern documentary</label>
-        </div>
-        <div class="question">
-            <p>2. The earliest manuscripts in India were written on:</p>
-            <label><input type="radio" name="h1q2" value="b"> b) Palm leaves</label><br>
-            <label><input type="radio" name="h1q2" value="a"> a) Paper</label><br>
-            <label><input type="radio" name="h1q2" value="c"> c) Stone tablets</label><br>
-            <label><input type="radio" name="h1q2" value="d"> d) Cloth</label>
-        </div>
-        <div class="question">
-            <p>3. Which river is associated with early human activity in central India?</p>
-            <label><input type="radio" name="h1q3" value="b"> b) Narmada</label><br>
-            <label><input type="radio" name="h1q3" value="a"> a) Ganga</label><br>
-            <label><input type="radio" name="h1q3" value="c"> c) Brahmaputra</label><br>
-            <label><input type="radio" name="h1q3" value="d"> d) Indus</label>
-        </div>
-        <div class="question">
-            <p>4. The term ‘Bharat’ was first mentioned in which ancient text?</p>
-            <label><input type="radio" name="h1q4" value="a"> a) Rigveda</label><br>
-            <label><input type="radio" name="h1q4" value="b"> b) Mahabharata</label><br>
-            <label><input type="radio" name="h1q4" value="c"> c) Ramayana</label><br>
-            <label><input type="radio" name="h1q4" value="d"> d) Upanishads</label>
-        </div>
-        <div class="question">
-            <p>5. What does the term ‘BC’ stand for in historical dating?</p>
-            <label><input type="radio" name="h1q5" value="a"> a) Before Christ</label><br>
-            <label><input type="radio" name="h1q5" value="b"> b) Before Civilization</label><br>
-            <label><input type="radio" name="h1q5" value="c"> c) Beginning of Culture</label><br>
-            <label><input type="radio" name="h1q5" value="d"> d) Before Century</label>
-        </div>
-        <div class="question">
-            <p>6. Archaeological findings are mainly studied through:</p>
-            <label><input type="radio" name="h1q6" value="c"> c) Excavated artifacts</label><br>
-            <label><input type="radio" name="h1q6" value="a"> a) Written records</label><br>
-            <label><input type="radio" name="h1q6" value="b"> b) Oral traditions</label><br>
-            <label><input type="radio" name="h1q6" value="d"> d) Modern maps</label>
-        </div>
-        <div class="question">
-            <p>7. The study of coins is known as:</p>
-            <label><input type="radio" name="h1q7" value="b"> b) Numismatics</label><br>
-            <label><input type="radio" name="h1q7" value="a"> a) Epigraphy</label><br>
-            <label><input type="radio" name="h1q7" value="c"> c) Paleography</label><br>
-            <label><input type="radio" name="h1q7" value="d"> d) Anthropology</label>
-        </div>
-        <div class="question">
-            <p>8. Which ancient script was deciphered by James Prinsep?</p>
-            <label><input type="radio" name="h1q8" value="c"> c) Brahmi</label><br>
-            <label><input type="radio" name="h1q8" value="a"> a) Kharoshthi</label><br>
-            <label><input type="radio" name="h1q8" value="b"> b) Tamil</label><br>
-            <label><input type="radio" name="h1q8" value="d"> d) Devanagari</label>
-        </div>
-        <div class="question">
-            <p>9. The term ‘AD’ refers to:</p>
-            <label><input type="radio" name="h1q9" value="b"> b) Anno Domini</label><br>
-            <label><input type="radio" name="h1q9" value="a"> a) After Development</label><br>
-            <label><input type="radio" name="h1q9" value="c"> c) Ancient Days</label><br>
-            <label><input type="radio" name="h1q9" value="d"> d) After Discovery</label>
-        </div>
-        <div class="question">
-            <p>10. Which helped preserve historical records in ancient India?</p>
-            <label><input type="radio" name="h1q10" value="b"> b) Inscriptions on rocks</label><br>
-            <label><input type="radio" name="h1q10" value="a"> a) Printing press</label><br>
-            <label><input type="radio" name="h1q10" value="c"> c) Digital archives</label><br>
-            <label><input type="radio" name="h1q10" value="d"> d) Newspapers</label>
-        </div>
 
-        <!-- History: Chapter 2 -->
-        <h2>History: On the Trail of the Earliest People</h2>
-        <div class="question">
-            <p>1. The earliest people primarily depended on:</p>
-            <label><input type="radio" name="h2q1" value="b"> b) Hunting and gathering</label><br>
-            <label><input type="radio" name="h2q1" value="a"> a) Agriculture</label><br>
-            <label><input type="radio" name="h2q1" value="c"> c) Trade</label><br>
-            <label><input type="radio" name="h2q1" value="d"> d) Fishing</label>
-        </div>
-        <div class="question">
-            <p>2. Stone tools from the Paleolithic period were mainly made of:</p>
-            <label><input type="radio" name="h2q2" value="b"> b) Flint</label><br>
-            <label><input type="radio" name="h2q2" value="a"> a) Iron</label><br>
-            <label><input type="radio" name="h2q2" value="c"> c) Bronze</label><br>
-            <label><input type="radio" name="h2q2" value="d"> d) Copper</label>
-        </div>
-        <div class="question">
-            <p>3. The discovery of fire helped early humans to:</p>
-            <label><input type="radio" name="h2q3" value="b"> b) Cook food</label><br>
-            <label><input type="radio" name="h2q3" value="a"> a) Build houses</label><br>
-            <label><input type="radio" name="h2q3" value="c"> c) Write records</label><br>
-            <label><input type="radio" name="h2q3" value="d"> d) Navigate rivers</label>
-        </div>
-        <div class="question">
-            <p>4. Which site in India is famous for Paleolithic rock paintings?</p>
-            <label><input type="radio" name="h2q4" value="a"> a) Bhimbetka</label><br>
-            <label><input type="radio" name="h2q4" value="b"> b) Harappa</label><br>
-            <label><input type="radio" name="h2q4" value="c"> c) Lothal</label><br>
-            <label><input type="radio" name="h2q4" value="d"> d) Dholavira</label>
-        </div>
-        <div class="question">
-            <p>5. Hunter-gatherers moved from place to place due to:</p>
-            <label><input type="radio" name="h2q5" value="a"> a) Search for water and food</label><br>
-            <label><input type="radio" name="h2q5" value="b"> b) Development of cities</label><br>
-            <label><input type="radio" name="h2q5" value="c"> c) Invention of the wheel</label><br>
-            <label><input type="radio" name="h2q5" value="d"> d) Trade opportunities</label>
-        </div>
-        <div class="question">
-            <p>6. The period when humans used only stone tools is called:</p>
-            <label><input type="radio" name="h2q6" value="c"> c) Paleolithic Age</label><br>
-            <label><input type="radio" name="h2q6" value="a"> a) Neolithic Age</label><br>
-            <label><input type="radio" name="h2q6" value="b"> b) Mesolithic Age</label><br>
-            <label><input type="radio" name="h2q6" value="d"> d) Chalcolithic Age</label>
-        </div>
-        <div class="question">
-            <p>7. Which was NOT a characteristic of hunter-gatherers?</p>
-            <label><input type="radio" name="h2q7" value="c"> c) Permanent settlements</label><br>
-            <label><input type="radio" name="h2q7" value="a"> a) Nomadic lifestyle</label><br>
-            <label><input type="radio" name="h2q7" value="b"> b) Use of stone tools</label><br>
-            <label><input type="radio" name="h2q7" value="d"> d) Dependence on nature</label>
-        </div>
-        <div class="question">
-            <p>8. The transition to agriculture began in which period?</p>
-            <label><input type="radio" name="h2q8" value="c"> c) Neolithic</label><br>
-            <label><input type="radio" name="h2q8" value="a"> a) Paleolithic</label><br>
-            <label><input type="radio" name="h2q8" value="b"> b) Mesolithic</label><br>
-            <label><input type="radio" name="h2q8" value="d"> d) Iron Age</label>
-        </div>
-        <div class="question">
-            <p>9. Early humans used caves as:</p>
-            <label><input type="radio" name="h2q9" value="b"> b) Temporary shelters</label><br>
-            <label><input type="radio" name="h2q9" value="a"> a) Storage rooms</label><br>
-            <label><input type="radio" name="h2q9" value="c"> c) Trading centers</label><br>
-            <label><input type="radio" name="h2q9" value="d"> d) Religious sites</label>
-        </div>
-        <div class="question">
-            <p>10. Which tool-making technique involved chipping stones?</p>
-            <label><input type="radio" name="h2q10" value="b"> b) Flaking</label><br>
-            <label><input type="radio" name="h2q10" value="a"> a) Polishing</label><br>
-            <label><input type="radio" name="h2q10" value="c"> c) Smelting</label><br>
-            <label><input type="radio" name="h2q10" value="d"> d) Forging</label>
-        </div>
+<!-- Star field -->
+<div class="stars" id="stars"></div>
 
-        <!-- History: Chapter 3 -->
-        <h2>History: The Earliest Cities</h2>
-        <div class="question">
-            <p>1. The Harappan civilization flourished around which river?</p>
-            <label><input type="radio" name="h3q1" value="c"> c) Indus</label><br>
-            <label><input type="radio" name="h3q1" value="a"> a) Ganga</label><br>
-            <label><input type="radio" name="h3q1" value="b"> b) Yamuna</label><br>
-            <label><input type="radio" name="h3q1" value="d"> d) Narmada</label>
-        </div>
-        <div class="question">
-            <p>2. Which Harappan city is known for its Great Bath?</p>
-            <label><input type="radio" name="h3q2" value="a"> a) Mohenjo-Daro</label><br>
-            <label><input type="radio" name="h3q2" value="b"> b) Harappa</label><br>
-            <label><input type="radio" name="h3q2" value="c"> c) Lothal</label><br>
-            <label><input type="radio" name="h3q2" value="d"> d) Kalibangan</label>
-        </div>
-        <div class="question">
-            <p>3. The Harappan seals often depicted:</p>
-            <label><input type="radio" name="h3q3" value="b"> b) Animals</label><br>
-            <label><input type="radio" name="h3q3" value="a"> a) Human figures</label><br>
-            <label><input type="radio" name="h3q3" value="c"> c) Trees</label><br>
-            <label><input type="radio" name="h3q3" value="d"> d) Buildings</label>
-        </div>
-        <div class="question">
-            <p>4. Which material was NOT commonly used by Harappans for construction?</p>
-            <label><input type="radio" name="h3q4" value="d"> d) Iron</label><br>
-            <label><input type="radio" name="h3q4" value="a"> a) Baked bricks</label><br>
-            <label><input type="radio" name="h3q4" value="b"> b) Mud bricks</label><br>
-            <label><input type="radio" name="h3q4" value="c"> c) Stone</label>
-        </div>
-        <div class="question">
-            <p>5. The Harappan drainage system indicates:</p>
-            <label><input type="radio" name="h3q5" value="b"> b) Advanced urban sanitation</label><br>
-            <label><input type="radio" name="h3q5" value="a"> a) Poor planning</label><br>
-            <label><input type="radio" name="h3q5" value="c"> c) Nomadic lifestyle</label><br>
-            <label><input type="radio" name="h3q5" value="d"> d) Lack of water supply</label>
-        </div>
-        <div class="question">
-            <p>6. Which Harappan site is known for its dockyard?</p>
-            <label><input type="radio" name="h3q6" value="b"> b) Lothal</label><br>
-            <label><input type="radio" name="h3q6" value="a"> a) Dholavira</label><br>
-            <label><input type="radio" name="h3q6" value="c"> c) Harappa</label><br>
-            <label><input type="radio" name="h3q6" value="d"> d) Rakhigarhi</label>
-        </div>
-        <div class="question">
-            <p>7. The Harappan script is:</p>
-            <label><input type="radio" name="h3q7" value="c"> c) Undeciphered</label><br>
-            <label><input type="radio" name="h3q7" value="a"> a) Fully deciphered</label><br>
-            <label><input type="radio" name="h3q7" value="b"> b) Written in Sanskrit</label><br>
-            <label><input type="radio" name="h3q7" value="d"> d) Based on Devanagari</label>
-        </div>
-        <div class="question">
-            <p>8. The decline of the Harappan civilization is often linked to:</p>
-            <label><input type="radio" name="h3q8" value="b"> b) Climate change</label><br>
-            <label><input type="radio" name="h3q8" value="a"> a) Foreign invasions</label><br>
-            <label><input type="radio" name="h3q8" value="c"> c) Rise of Vedic culture</label><br>
-            <label><input type="radio" name="h3q8" value="d"> d) Overpopulation</label>
-        </div>
-        <div class="question">
-            <p>9. Which was a major occupation in Harappan cities?</p>
-            <label><input type="radio" name="h3q9" value="a"> a) Farming</label><br>
-            <label><input type="radio" name="h3q9" value="b"> b) Mining</label><br>
-            <label><input type="radio" name="h3q9" value="c"> c) Shipbuilding</label><br>
-            <label><input type="radio" name="h3q9" value="d"> d) Hunting</label>
-        </div>
-        <div class="question">
-            <p>10. The Harappan civilization is dated to approximately:</p>
-            <label><input type="radio" name="h3q10" value="a"> a) 2500–1900 BCE</label><br>
-            <label><input type="radio" name="h3q10" value="b"> b) 1500–1000 BCE</label><br>
-            <label><input type="radio" name="h3q10" value="c"> c) 500–200 BCE</label><br>
-            <label><input type="radio" name="h3q10" value="d"> d) 1000–500 CE</label>
-        </div>
+<!-- Floating hearts -->
+<div class="floating-hearts" id="floatingHearts"></div>
 
-        <!-- Geography: Chapter 1 -->
-        <h2>Geography: Globe - Latitudes and Longitudes</h2>
-        <div class="question">
-            <p>1. The Equator is located at:</p>
-            <label><input type="radio" name="g1q1" value="a"> a) 0° latitude</label><br>
-            <label><input type="radio" name="g1q1" value="b"> b) 90° latitude</label><br>
-            <label><input type="radio" name="g1q1" value="c"> c) 0° longitude</label><br>
-            <label><input type="radio" name="g1q1" value="d"> d) 180° longitude</label>
-        </div>
-        <div class="question">
-            <p>2. The Prime Meridian passes through:</p>
-            <label><input type="radio" name="g1q2" value="b"> b) Greenwich</label><br>
-            <label><input type="radio" name="g1q2" value="a"> a) New York</label><br>
-            <label><input type="radio" name="g1q2" value="c"> c) Delhi</label><br>
-            <label><input type="radio" name="g1q2" value="d"> d) Tokyo</label>
-        </div>
-        <div class="question">
-            <p>3. How many time zones does the Earth have?</p>
-            <label><input type="radio" name="g1q3" value="b"> b) 24</label><br>
-            <label><input type="radio" name="g1q3" value="a"> a) 12</label><br>
-            <label><input type="radio" name="g1q3" value="c"> c) 36</label><br>
-            <label><input type="radio" name="g1q3" value="d"> d) 48</label>
-        </div>
-        <div class="question">
-            <p>4. The Tropic of Cancer is located at:</p>
-            <label><input type="radio" name="g1q4" value="a"> a) 23.5°N</label><br>
-            <label><input type="radio" name="g1q4" value="b"> b) 23.5°S</label><br>
-            <label><input type="radio" name="g1q4" value="c"> c) 66.5°N</label><br>
-            <label><input type="radio" name="g1q4" value="d"> d) 66.5°S</label>
-        </div>
-        <div class="question">
-            <p>5. India’s time is ahead of GMT by:</p>
-            <label><input type="radio" name="g1q5" value="b"> b) 5.5 hours</label><br>
-            <label><input type="radio" name="g1q5" value="a"> a) 4 hours</label><br>
-            <label><input type="radio" name="g1q5" value="c"> c) 6 hours</label><br>
-            <label><input type="radio" name="g1q5" value="d"> d) 7 hours</label>
-        </div>
-        <div class="question">
-            <p>6. Lines of longitude are also called:</p>
-            <label><input type="radio" name="g1q6" value="b"> b) Meridians</label><br>
-            <label><input type="radio" name="g1q6" value="a"> a) Parallels</label><br>
-            <label><input type="radio" name="g1q6" value="c"> c) Tropics</label><br>
-            <label><input type="radio" name="g1q6" value="d"> d) Circles</label>
-        </div>
-        <div class="question">
-            <p>7. The Arctic Circle is located at:</p>
-            <label><input type="radio" name="g1q7" value="b"> b) 66.5°N</label><br>
-            <label><input type="radio" name="g1q7" value="a"> a) 23.5°N</label><br>
-            <label><input type="radio" name="g1q7" value="c"> c) 23.5°S</label><br>
-            <label><input type="radio" name="g1q7" value="d"> d) 66.5°S</label>
-        </div>
-        <div class="question">
-            <p>8. The Earth is divided into how many hemispheres?</p>
-            <label><input type="radio" name="g1q8" value="c"> c) 4</label><br>
-            <label><input type="radio" name="g1q8" value="a"> a) 2</label><br>
-            <label><input type="radio" name="g1q8" value="b"> b) 3</label><br>
-            <label><input type="radio" name="g1q8" value="d"> d) 6</label>
-        </div>
-        <div class="question">
-            <p>9. Which latitude marks the southern boundary of the Torrid Zone?</p>
-            <label><input type="radio" name="g1q9" value="b"> b) Tropic of Capricorn</label><br>
-            <label><input type="radio" name="g1q9" value="a"> a) Tropic of Cancer</label><br>
-            <label><input type="radio" name="g1q9" value="c"> c) Arctic Circle</label><br>
-            <label><input type="radio" name="g1q9" value="d"> d) Antarctic Circle</label>
-        </div>
-        <div class="question">
-            <p>10. The International Date Line is roughly along:</p>
-            <label><input type="radio" name="g1q10" value="c"> c) 180° longitude</label><br>
-            <label><input type="radio" name="g1q10" value="a"> a) 0° longitude</label><br>
-            <label><input type="radio" name="g1q10" value="b"> b) 90° longitude</label><br>
-            <label><input type="radio" name="g1q10" value="d"> d) 270° longitude</label>
-        </div>
+<!-- ======== HERO ======== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-since">— Our Love Story —</p>
+    <h1 class="hero-title">
+      <em>Momo</em> <span class="hero-amp">&amp;</span> <em>Kittu</em>
+    </h1>
+    <p class="hero-sub">Every moment, captured forever ✦</p>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
 
-        <!-- Geography: Chapter 2 -->
-        <h2>Geography: The Solar System</h2>
-        <div class="question">
-            <p>1. How many planets are there in our solar system?</p>
-            <label><input type="radio" name="g2q1" value="b"> b) 8</label><br>
-            <label><input type="radio" name="g2q1" value="a"> a) 7</label><br>
-            <label><input type="radio" name="g2q1" value="c"> c) 9</label><br>
-            <label><input type="radio" name="g2q1" value="d"> d) 10</label>
-        </div>
-        <div class="question">
-            <p>2. Which planet is closest to the Sun?</p>
-            <label><input type="radio" name="g2q2" value="b"> b) Mercury</label><br>
-            <label><input type="radio" name="g2q2" value="a"> a) Venus</label><br>
-            <label><input type="radio" name="g2q2" value="c"> c) Earth</label><br>
-            <label><input type="radio" name="g2q2" value="d"> d) Mars</label>
-        </div>
-        <div class="question">
-            <p>3. The largest planet in the solar system is:</p>
-            <label><input type="radio" name="g2q3" value="a"> a) Jupiter</label><br>
-            <label><input type="radio" name="g2q3" value="b"> b) Saturn</label><br>
-            <label><input type="radio" name="g2q3" value="c"> c) Uranus</label><br>
-            <label><input type="radio" name="g2q3" value="d"> d) Neptune</label>
-        </div>
-        <div class="question">
-            <p>4. Which celestial body is Earth’s natural satellite?</p>
-            <label><input type="radio" name="g2q4" value="b"> b) Moon</label><br>
-            <label><input type="radio" name="g2q4" value="a"> a) Sun</label><br>
-            <label><input type="radio" name="g2q4" value="c"> c) Mars</label><br>
-            <label><input type="radio" name="g2q4" value="d"> d) Venus</label>
-        </div>
-        <div class="question">
-            <p>5. The Sun is primarily composed of:</p>
-            <label><input type="radio" name="g2q5" value="a"> a) Hydrogen</label><br>
-            <label><input type="radio" name="g2q5" value="b"> b) Oxygen</label><br>
-            <label><input type="radio" name="g2q5" value="c"> c) Nitrogen</label><br>
-            <label><input type="radio" name="g2q5" value="d"> d) Carbon</label>
-        </div>
-        <div class="question">
-            <p>6. Which planet is known for its prominent ring system?</p>
-            <label><input type="radio" name="g2q6" value="c"> c) Saturn</label><br>
-            <label><input type="radio" name="g2q6" value="a"> a) Jupiter</label><br>
-            <label><input type="radio" name="g2q6" value="b"> b) Uranus</label><br>
-            <label><input type="radio" name="g2q6" value="d"> d) Neptune</label>
-        </div>
-        <div class="question">
-            <p>7. The Earth takes approximately how long to complete one rotation?</p>
-            <label><input type="radio" name="g2q7" value="b"> b) 24 hours</label><br>
-            <label><input type="radio" name="g2q7" value="a"> a) 12 hours</label><br>
-            <label><input type="radio" name="g2q7" value="c"> c) 48 hours</label><br>
-            <label><input type="radio" name="g2q7" value="d"> d) 72 hours</label>
-        </div>
-        <div class="question">
-            <p>8. Which of the following is NOT a planet?</p>
-            <label><input type="radio" name="g2q8" value="a"> a) Pluto</label><br>
-            <label><input type="radio" name="g2q8" value="b"> b) Mars</label><br>
-            <label><input type="radio" name="g2q8" value="c"> c) Venus</label><br>
-            <label><input type="radio" name="g2q8" value="d"> d) Earth</label>
-        </div>
-        <div class="question">
-            <p>9. The solar system is part of which galaxy?</p>
-            <label><input type="radio" name="g2q9" value="b"> b) Milky Way</label><br>
-            <label><input type="radio" name="g2q9" value="a"> a) Andromeda</label><br>
-            <label><input type="radio" name="g2q9" value="c"> c) Triangulum</label><br>
-            <label><input type="radio" name="g2q9" value="d"> d) Whirlpool</label>
-        </div>
-        <div class="question">
-            <p>10. Which planet has the shortest day?</p>
-            <label><input type="radio" name="g2q10" value="a"> a) Jupiter</label><br>
-            <label><input type="radio" name="g2q10" value="b"> b) Earth</label><br>
-            <label><input type="radio" name="g2q10" value="c"> c) Mars</label><br>
-            <label><input type="radio" name="g2q10" value="d"> d) Venus</label>
-        </div>
+<!-- ======== TIMELINE ======== -->
+<div style="position:relative; z-index:1;">
+  <p class="timeline-label">✦ Our Journey Together ✦</p>
 
-        <!-- Polity: Chapter 1 -->
-        <h2>Polity: Understanding Diversity</h2>
-        <div class="question">
-            <p>1. India is known for its diversity in:</p>
-            <label><input type="radio" name="p1q1" value="a"> a) Language</label><br>
-            <label><input type="radio" name="p1q1" value="b"> b) Currency</label><br>
-            <label><input type="radio" name="p1q1" value="c"> c) Time zones</label><br>
-            <label><input type="radio" name="p1q1" value="d"> d) Military</label>
-        </div>
-        <div class="question">
-            <p>2. How many languages are recognized in the Eighth Schedule?</p>
-            <label><input type="radio" name="p1q2" value="b"> b) 22</label><br>
-            <label><input type="radio" name="p1q2" value="a"> a) 14</label><br>
-            <label><input type="radio" name="p1q2" value="c"> c) 28</label><br>
-            <label><input type="radio" name="p1q2" value="d"> d) 36</label>
-        </div>
-        <div class="question">
-            <p>3. The term ‘Unity in Diversity’ was popularized by:</p>
-            <label><input type="radio" name="p1q3" value="b"> b) Jawaharlal Nehru</label><br>
-            <label><input type="radio" name="p1q3" value="a"> a) Mahatma Gandhi</label><br>
-            <label><input type="radio" name="p1q3" value="c"> c) B.R. Ambedkar</label><br>
-            <label><input type="radio" name="p1q3" value="d"> d) Sardar Patel</label>
-        </div>
-        <div class="question">
-            <p>4. Which festival reflects India’s cultural diversity?</p>
-            <label><input type="radio" name="p1q4" value="d"> d) All of the above</label><br>
-            <label><input type="radio" name="p1q4" value="a"> a) Diwali</label><br>
-            <label><input type="radio" name="p1q4" value="b"> b) Christmas</label><br>
-            <label><input type="radio" name="p1q4" value="c"> c) Eid</label>
-        </div>
-        <div class="question">
-            <p>5. The state of Jammu and Kashmir is known for its unique:</p>
-            <label><input type="radio" name="p1q5" value="b"> b) Handicrafts like Pashmina</label><br>
-            <label><input type="radio" name="p1q5" value="a"> a) Desert landscape</label><br>
-            <label><input type="radio" name="p1q5" value="c"> c) Tropical climate</label><br>
-            <label><input type="radio" name="p1q5" value="d"> d) Coastal fisheries</label>
-        </div>
-        <div class="question">
-            <p>6. Which promotes unity in India?</p>
-            <label><input type="radio" name="p1q6" value="b"> b) National Anthem</label><br>
-            <label><input type="radio" name="p1q6" value="a"> a) Regional conflicts</label><br>
-            <label><input type="radio" name="p1q6" value="c"> c) Language barriers</label><br>
-            <label><input type="radio" name="p1q6" value="d"> d) Religious disputes</label>
-        </div>
-        <div class="question">
-            <p>7. The diversity of India is NOT influenced by:</p>
-            <label><input type="radio" name="p1q7" value="c"> c) Single time zone</label><br>
-            <label><input type="radio" name="p1q7" value="a"> a) Geography</label><br>
-            <label><input type="radio" name="p1q7" value="b"> b) History</label><br>
-            <label><input type="radio" name="p1q7" value="d"> d) Climate</label>
-        </div>
-        <div class="question">
-            <p>8. Which region of India is known for its matrilineal society?</p>
-            <label><input type="radio" name="p1q8" value="a"> a) Kerala</label><br>
-            <label><input type="radio" name="p1q8" value="b"> b) Rajasthan</label><br>
-            <label><input type="radio" name="p1q8" value="c"> c) Punjab</label><br>
-            <label><input type="radio" name="p1q8" value="d"> d) Gujarat</label>
-        </div>
-        <div class="question">
-            <p>9. The Indian Constitution ensures diversity through:</p>
-            <label><input type="radio" name="p1q9" value="b"> b) Fundamental Rights</label><br>
-            <label><input type="radio" name="p1q9" value="a"> a) Uniform civil code</label><br>
-            <label><input type="radio" name="p1q9" value="c"> c) Single citizenship</label><br>
-            <label><input type="radio" name="p1q9" value="d"> d) Centralized governance</label>
-        </div>
-        <div class="question">
-            <p>10. Which is an example of religious diversity in India?</p>
-            <label><input type="radio" name="p1q10" value="b"> b) Celebration of Holi and Eid</label><br>
-            <label><input type="radio" name="p1q10" value="a"> a) Hindi as a national language</label><br>
-            <label><input type="radio" name="p1q10" value="c"> c) Single currency</label><br>
-            <label><input type="radio" name="p1q10" value="d"> d) Parliamentary system</label>
-        </div>
+  <div class="add-photos-note">
+    <strong>📸 How to add your real photos:</strong> Find <code>src="YOUR_PHOTO_1.jpg"</code> in the code and replace with your image path or URL. Each milestone has 2 photo slots. To add a new milestone, copy any <code>&lt;!-- NODE --&gt;</code> block and fill in your date &amp; story!
+  </div>
 
-        <button type="submit">Submit Answers</button>
-    </form>
+  <div class="timeline" id="timeline">
+    <div class="trunk"></div>
 
-    <div id="results" style="display: none;">
-        <h2>Your Results</h2>
-        <p>Total Score: <span id="totalScore"></span> / 60</p>
-        <h3>History</h3>
-        <p>Chapter 1: What, Where, How, and When: <span id="h1Score"></span> / 10</p>
-        <p>Chapter 2: On the Trail of the Earliest People: <span id="h2Score"></span> / 10</p>
-        <p>Chapter 3: The Earliest Cities: <span id="h3Score"></span> / 10</p>
-        <p>Total History Score: <span id="historyScore"></span> / 30</p>
-        <h3>Geography</h3>
-        <p>Chapter 1: Globe - Latitudes and Longitudes: <span id="g1Score"></span> / 10</p>
-        <p>Chapter 2: The Solar System: <span id="g2Score"></span> / 10</p>
-        <p>Total Geography Score: <span id="geographyScore"></span> / 20</p>
-        <h3>Polity</h3>
-        <p>Chapter 1: Understanding Diversity: <span id="p1Score"></span> / 10</p>
-        <p>Total Polity Score: <span id="polityScore"></span> / 10</p>
+    <!-- ===== NODE 1 — LEFT ===== -->
+    <div class="node left" data-index="0">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">December 12, 2023</div>
+        <div class="card-title">The Day We Met</div>
+        <div class="card-desc">That one evening when the universe decided to introduce us. A smile that changed everything.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-0">
+              <!-- SLIDE 1 -->
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20231212_235811.jpg" alt="Our first memory" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Our first hello ♥</div>
+                </div>
+              </div>
+              <!-- SLIDE 2 -->
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20231213_000927.jpg" alt="The beginning" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">The beginning ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(0,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(0,1)">▶</button>
+          <div class="slider-dots" id="dots-0">
+            <div class="dot active" onclick="goSlide(0,0)"></div>
+            <div class="dot" onclick="goSlide(0,1)"></div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- ===== NODE 2 — RIGHT ===== -->
+    <div class="node right" data-index="1">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">December 14, 2023</div>
+        <div class="card-title">The Marriage Materials</div>
+        <div class="card-desc">The day which was special for me, the day I felt your care for the first time.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-1">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/Screenshot%202026-03-26%20133154.png" alt="First date" style="width:100%;height:384px;object-fit:cover;display:block;">
+                  <div class="photo-caption">First date magic ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20231215_232043.jpg" alt="Just us two" style="width:100%;height:384px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Just us two ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(1,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(1,1)">▶</button>
+          <div class="slider-dots" id="dots-1">
+            <div class="dot active" onclick="goSlide(1,0)"></div>
+            <div class="dot" onclick="goSlide(1,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 3 — LEFT ===== -->
+    <div class="node left" data-index="2">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">February 8, 2024</div>
+        <div class="card-title">My Beauty in Saree</div>
+        <div class="card-desc">Was stunned to see my beauty in saree, she was going to her farewell from school.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-2">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG-20240208-WA0008.jpg" alt="Valentine's day" style="width:100%;height:442px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Valentine's day ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG-20240125-WA0026.jpg" alt="Love in bloom" style="width:100%;height:442px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Love in bloom ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(2,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(2,1)">▶</button>
+          <div class="slider-dots" id="dots-2">
+            <div class="dot active" onclick="goSlide(2,0)"></div>
+            <div class="dot" onclick="goSlide(2,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 4 — RIGHT ===== -->
+    <div class="node right" data-index="3">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">March 9, 2024</div>
+        <div class="card-title">First to Khandwa</div>
+        <div class="card-desc">I remember when I first went there to Khandwa again to see your pretty face, your first hug on the Bike.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-3">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240309_212343.jpg" alt="First to Khandwa" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Khandwa diaries ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240309_210912.jpg" alt="First hug on the bike" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Your first hug ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(3,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(3,1)">▶</button>
+          <div class="slider-dots" id="dots-3">
+            <div class="dot active" onclick="goSlide(3,0)"></div>
+            <div class="dot" onclick="goSlide(3,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 5 — LEFT ===== -->
+    <div class="node left" data-index="4">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">March 23, 2024</div>
+        <div class="card-title">My Cutii's Jaggu Bandar</div>
+        <div class="card-desc">She presented me with a cute monkey, I loved hanging him around.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-4">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG-20240406-WA0008.jpg" alt="Jaggu Bandar" style="width:100%;height:460px;object-fit:cover;display:block;">
+                  <div class="photo-caption">My Jaggu ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG-20240323-WA0016.jpg" alt="Cute gift" style="width:100%;height:460px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Her little surprise ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(4,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(4,1)">▶</button>
+          <div class="slider-dots" id="dots-4">
+            <div class="dot active" onclick="goSlide(4,0)"></div>
+            <div class="dot" onclick="goSlide(4,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 6 — RIGHT ===== -->
+    <div class="node right" data-index="5">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">March 30, 2024</div>
+        <div class="card-title">Our First Holi</div>
+        <div class="card-desc">This Holi added an extra closeness in our heart, my surprise your reactions were precious.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-5">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG-20240330-WA0005.jpg" alt="Our First Holi" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Colours of us ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG-20240508-WA0012.jpg" alt="Holi surprise" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Your precious reaction ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(5,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(5,1)">▶</button>
+          <div class="slider-dots" id="dots-5">
+            <div class="dot active" onclick="goSlide(5,0)"></div>
+            <div class="dot" onclick="goSlide(5,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 7 — LEFT ===== -->
+    <div class="node left" data-index="6">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">May 8, 2024</div>
+        <div class="card-title">A Long Wait to See You</div>
+        <div class="card-desc">After this we were waiting to see each other for long long time, these moments were very close to my heart.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-6">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240508_190725.jpg" alt="A long wait" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Worth every wait ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240508_190714.jpg" alt="Close to my heart" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Close to my heart ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(6,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(6,1)">▶</button>
+          <div class="slider-dots" id="dots-6">
+            <div class="dot active" onclick="goSlide(6,0)"></div>
+            <div class="dot" onclick="goSlide(6,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 8 — RIGHT ===== -->
+    <div class="node right" data-index="7">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">May 19, 2024</div>
+        <div class="card-title">Ladu and Her Flowers</div>
+        <div class="card-desc">Ladu came to visit, I brought flowers because she loves it.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-7">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240516_230243.jpg" alt="Ladu and flowers" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Her favourite flowers ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240516_185230.jpg" alt="Ladu's visit" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">My Ladu ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(7,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(7,1)">▶</button>
+          <div class="slider-dots" id="dots-7">
+            <div class="dot active" onclick="goSlide(7,0)"></div>
+            <div class="dot" onclick="goSlide(7,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 9 — LEFT ===== -->
+    <div class="node left" data-index="8">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">May 19, 2024</div>
+        <div class="card-title">A Visit to Her Home</div>
+        <div class="card-desc">I visited her home with flower seeds, they are not grown but the fun we had was special.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-8">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240519_190819.jpg" alt="Visit to her home" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Her little home ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240519_133942.jpg" alt="Flower seeds" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Our little garden ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(8,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(8,1)">▶</button>
+          <div class="slider-dots" id="dots-8">
+            <div class="dot active" onclick="goSlide(8,0)"></div>
+            <div class="dot" onclick="goSlide(8,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 10 — RIGHT ===== -->
+    <div class="node right" data-index="9">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">May 26, 2024</div>
+        <div class="card-title">When Hotness Meets Coldness</div>
+        <div class="card-desc">A visit to Snow Park in hot summer, lots of memories and fun.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-9">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG-20240526-WA0061.jpg" alt="Snow park visit" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Hot summer, cold hearts ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG-20240526-WA0063.jpg" alt="Snow park fun" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Snow day memories ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(9,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(9,1)">▶</button>
+          <div class="slider-dots" id="dots-9">
+            <div class="dot active" onclick="goSlide(9,0)"></div>
+            <div class="dot" onclick="goSlide(9,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 11 — LEFT ===== -->
+    <div class="node left" data-index="10">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">June 8, 2024</div>
+        <div class="card-title">A Visit to Bilawali Lake</div>
+        <div class="card-desc">When my Ladu says she wants to do ghumu ghumi, it's an order.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-10">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240608_092807.jpg" alt="Bilawali Lake" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Ghumu ghumi time ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240608_093317.jpg" alt="Bilawali Lake fun" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">My Ladu by the lake ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(10,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(10,1)">▶</button>
+          <div class="slider-dots" id="dots-10">
+            <div class="dot active" onclick="goSlide(10,0)"></div>
+            <div class="dot" onclick="goSlide(10,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 12 — RIGHT ===== -->
+    <div class="node right" data-index="11">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">June 12, 2024</div>
+        <div class="card-title">Her Soft Cheeks</div>
+        <div class="card-desc">A soft kiss that we shared on cheeks, making some beautiful memories.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-11">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240612_225818.jpg" alt="Her soft cheeks" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">A soft little kiss ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240612_225801.jpg" alt="Beautiful memories" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Beautiful memories ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(11,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(11,1)">▶</button>
+          <div class="slider-dots" id="dots-11">
+            <div class="dot active" onclick="goSlide(11,0)"></div>
+            <div class="dot" onclick="goSlide(11,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 13 — LEFT ===== -->
+    <div class="node left" data-index="12">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">June 23, 2024</div>
+        <div class="card-title">Can't Stop Visiting Her Again</div>
+        <div class="card-desc">My Ladu don't work, she sits with me and makes cute memories.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-12">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240623_115002.jpg" alt="Visiting her again" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">My favourite distraction ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240623_114736.jpg" alt="Cute memories" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Cute memories made ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(12,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(12,1)">▶</button>
+          <div class="slider-dots" id="dots-12">
+            <div class="dot active" onclick="goSlide(12,0)"></div>
+            <div class="dot" onclick="goSlide(12,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 14 — RIGHT ===== -->
+    <div class="node right" data-index="13">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">August 11, 2024</div>
+        <div class="card-title">The First Pune Trip</div>
+        <div class="card-desc">First time went together, chill days, good travel and my Sweetii with me is everything I need.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-13">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240811_144625.jpg" alt="Pune trip" style="width:100%;height:412px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Pune with my everything ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240811_094653.jpg" alt="Pune travel" style="width:100%;height:412px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Chill days together ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(13,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(13,1)">▶</button>
+          <div class="slider-dots" id="dots-13">
+            <div class="dot active" onclick="goSlide(13,0)"></div>
+            <div class="dot" onclick="goSlide(13,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 15 — LEFT ===== -->
+    <div class="node left" data-index="14">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">August 13, 2024</div>
+        <div class="card-title">The Pawana Lake</div>
+        <div class="card-desc">When we went to see the distances on Bike, finding our way around each other.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-14">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240813_174743.jpg" alt="Pawana Lake" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Distances on a bike ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240814_112624.jpg" alt="Pawana Lake views" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Finding our way ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(14,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(14,1)">▶</button>
+          <div class="slider-dots" id="dots-14">
+            <div class="dot active" onclick="goSlide(14,0)"></div>
+            <div class="dot" onclick="goSlide(14,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 16 — RIGHT ===== -->
+    <div class="node right" data-index="15">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">August 15, 2024</div>
+        <div class="card-title">That Pink Dress</div>
+        <div class="card-desc">I found a dress that was living in my dream for her and it looks heavenly on her.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-15">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240815_200837.jpg" alt="That pink dress" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Heavenly in pink ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240815_085323.jpg" alt="Pink dress memories" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">My dream come true ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(15,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(15,1)">▶</button>
+          <div class="slider-dots" id="dots-15">
+            <div class="dot active" onclick="goSlide(15,0)"></div>
+            <div class="dot" onclick="goSlide(15,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 17 — LEFT ===== -->
+    <div class="node left" data-index="16">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">August 16, 2024</div>
+        <div class="card-title">Bhemashakar Doll</div>
+        <div class="card-desc">Got the chance to visit Bhemashakar Jyotirlinga, a holy and pure experience for my doll.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-16">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240816_091608.jpg" alt="Bhemashakar visit" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">A holy journey ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240816_143125.jpg" alt="Bhemashakar Jyotirlinga" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Pure & blessed together ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(16,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(16,1)">▶</button>
+          <div class="slider-dots" id="dots-16">
+            <div class="dot active" onclick="goSlide(16,0)"></div>
+            <div class="dot" onclick="goSlide(16,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 18 — RIGHT ===== -->
+    <div class="node right" data-index="17">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">August 17, 2024</div>
+        <div class="card-title">Triyambkeshwar Way</div>
+        <div class="card-desc">I remember the day when you didn't think about what others will say and sat beside me to make me happy.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-17">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240817_122043.jpg" alt="Triyambkeshwar way" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">You & only you ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_20240817_151552.jpg" alt="Sat beside me" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Just to make me happy ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(17,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(17,1)">▶</button>
+          <div class="slider-dots" id="dots-17">
+            <div class="dot active" onclick="goSlide(17,0)"></div>
+            <div class="dot" onclick="goSlide(17,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 19 — LEFT ===== -->
+    <div class="node left" data-index="18">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">October 6, 2024</div>
+        <div class="card-title">The Navratri</div>
+        <div class="card-desc">When she dances my whole world stops to see her.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-18">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_0104N.jpg" alt="Navratri dance" style="width:100%;height:412px;object-fit:cover;display:block;">
+                  <div class="photo-caption">My whole world stops ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_0101N.jpg" alt="Navratri memories" style="width:100%;height:412px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Dancing goddess ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(18,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(18,1)">▶</button>
+          <div class="slider-dots" id="dots-18">
+            <div class="dot active" onclick="goSlide(18,0)"></div>
+            <div class="dot" onclick="goSlide(18,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 20 — RIGHT ===== -->
+    <div class="node right" data-index="19">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">October 9, 2024</div>
+        <div class="card-title">My Cheery Love</div>
+        <div class="card-desc">Mom's birthday but the center of attraction is always she, watching her keeps my heart pulsing.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-19">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_0227.jpg" alt="My cheery love" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Center of every room ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_0215.jpg" alt="Heart pulsing" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Keeps my heart pulsing ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(19,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(19,1)">▶</button>
+          <div class="slider-dots" id="dots-19">
+            <div class="dot active" onclick="goSlide(19,0)"></div>
+            <div class="dot" onclick="goSlide(19,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 21 — LEFT ===== -->
+    <div class="node left" data-index="20">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">October 28, 2024</div>
+        <div class="card-title">Shanu's Birthday</div>
+        <div class="card-desc">The way she adores everyone is lovable to me, everyone's birthday is special for her.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-20">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_0386.jpg" alt="Shanu's birthday" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">She adores everyone ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_0510.jpg" alt="Birthday celebration" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Every birthday is special ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(20,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(20,1)">▶</button>
+          <div class="slider-dots" id="dots-20">
+            <div class="dot active" onclick="goSlide(20,0)"></div>
+            <div class="dot" onclick="goSlide(20,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 22 — RIGHT ===== -->
+    <div class="node right" data-index="21">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">November 19, 2024</div>
+        <div class="card-title">The Cooking</div>
+        <div class="card-desc">When she cooks for me it feels like I have been waiting for this a very long time.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-21">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_0670.jpg" alt="She cooks for me" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Worth every wait ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_0674.jpg" alt="Cooking memories" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Made with love ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(21,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(21,1)">▶</button>
+          <div class="slider-dots" id="dots-21">
+            <div class="dot active" onclick="goSlide(21,0)"></div>
+            <div class="dot" onclick="goSlide(21,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 23 — LEFT ===== -->
+    <div class="node left" data-index="22">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">December 7, 2024</div>
+        <div class="card-title">My Panda Her Panda</div>
+        <div class="card-desc">A quick office program turned into cuteness, dance, food and what not.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-22">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_0815.jpg" alt="My panda her panda" style="width:100%;height:373px;object-fit:cover;display:block;">
+                  <div class="photo-caption">My little panda ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_0825.jpg" alt="Cuteness overload" style="width:100%;height:373px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Dance, food & cuteness ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(22,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(22,1)">▶</button>
+          <div class="slider-dots" id="dots-22">
+            <div class="dot active" onclick="goSlide(22,0)"></div>
+            <div class="dot" onclick="goSlide(22,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 24 — RIGHT ===== -->
+    <div class="node right" data-index="23">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">January 4, 2025</div>
+        <div class="card-title">My Princess's Birthday</div>
+        <div class="card-desc">The day she turned 18.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-23">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_1215.jpg" alt="Princess's birthday" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Finally 18 ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_1254.jpg" alt="Birthday princess" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">My forever princess ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(23,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(23,1)">▶</button>
+          <div class="slider-dots" id="dots-23">
+            <div class="dot active" onclick="goSlide(23,0)"></div>
+            <div class="dot" onclick="goSlide(23,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 25 — LEFT ===== -->
+    <div class="node left" data-index="24">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">March 1, 2025</div>
+        <div class="card-title">My Birthday</div>
+        <div class="card-desc">Thank you so much for making my day special, with you every memory feels special.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-24">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_1581.jpg" alt="My birthday" style="width:100%;height:445px;object-fit:cover;display:block;">
+                  <div class="photo-caption">You made it special ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_1591.jpg" alt="Birthday memories" style="width:100%;height:445px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Every memory with you ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(24,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(24,1)">▶</button>
+          <div class="slider-dots" id="dots-24">
+            <div class="dot active" onclick="goSlide(24,0)"></div>
+            <div class="dot" onclick="goSlide(24,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 26 — RIGHT ===== -->
+    <div class="node right" data-index="25">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">March 30, 2025</div>
+        <div class="card-title">My Cute Baby</div>
+        <div class="card-desc">She is always making efforts to look cuter and I love everything she does.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-25">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_1883.jpg" alt="My cute baby" style="width:100%;height:430px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Always getting cuter ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_1850.jpg" alt="Cute baby" style="width:100%;height:430px;object-fit:cover;display:block;">
+                  <div class="photo-caption">I love everything she does ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(25,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(25,1)">▶</button>
+          <div class="slider-dots" id="dots-25">
+            <div class="dot active" onclick="goSlide(25,0)"></div>
+            <div class="dot" onclick="goSlide(25,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 27 — LEFT ===== -->
+    <div class="node left" data-index="26">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">April 20, 2025</div>
+        <div class="card-title">Anu Di's Marriage</div>
+        <div class="card-desc">Just for you I went there, just to be with you, when you sat beside me I felt like I don't even have any problems.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-26">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_2105.jpg" alt="Anu Di's marriage" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Just to be with you ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_2162.jpg" alt="Beside me no problems" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">No problems when you're near ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(26,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(26,1)">▶</button>
+          <div class="slider-dots" id="dots-26">
+            <div class="dot active" onclick="goSlide(26,0)"></div>
+            <div class="dot" onclick="goSlide(26,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 28 — RIGHT ===== -->
+    <div class="node right" data-index="27">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">May 17, 2025</div>
+        <div class="card-title">The Water Park</div>
+        <div class="card-desc">We went to Pune then a long drive to Wet and Joy Water Park, your joyful face gave me happiness of a thousand lifetime.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-27">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_2694.jpg" alt="Water park fun" style="width:100%;height:300px;object-fit:cover;display:block;margin-right: -196px;">
+                  <div class="photo-caption">A thousand lifetimes ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_2690.jpg" alt="Joyful face" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Your joy is my happiness ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(27,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(27,1)">▶</button>
+          <div class="slider-dots" id="dots-27">
+            <div class="dot active" onclick="goSlide(27,0)"></div>
+            <div class="dot" onclick="goSlide(27,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 29 — LEFT ===== -->
+    <div class="node left" data-index="28">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">September 6, 2025</div>
+        <div class="card-title">The Long Distance Starts</div>
+        <div class="card-desc">Starting our tough long distance journey, we love each other so much, I am sure we will survive this as well.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-28">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_3395.jpg" alt="Long distance starts" style="width:100%;height:431px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Distance can't stop us ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_3257.jpg" alt="We will survive this" style="width:100%;height:431px;object-fit:cover;display:block;">
+                  <div class="photo-caption">We will survive this ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(28,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(28,1)">▶</button>
+          <div class="slider-dots" id="dots-28">
+            <div class="dot active" onclick="goSlide(28,0)"></div>
+            <div class="dot" onclick="goSlide(28,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 30 — RIGHT ===== -->
+    <div class="node right" data-index="29">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">October 24, 2025</div>
+        <div class="card-title">Don't Kiss Doraemon</div>
+        <div class="card-desc">I gave her a teddy Doraemon, sometimes I wish he is me when she kisses him. I love to see her sleeping when she calls me at night and sleeps in front of me.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-29">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_3715.jpg" alt="Doraemon teddy" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">That's supposed to be me ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_5394.jpg" alt="Sleeping peacefully" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">My favourite sight ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(29,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(29,1)">▶</button>
+          <div class="slider-dots" id="dots-29">
+            <div class="dot active" onclick="goSlide(29,0)"></div>
+            <div class="dot" onclick="goSlide(29,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 31 — LEFT ===== -->
+    <div class="node left" data-index="30">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">December 27, 2025</div>
+        <div class="card-title">The Urge to Meet You</div>
+        <div class="card-desc">Love never stops at distances, we felt that — a 30 hour long journey to Guwahati just to see your pretty face felt like nothing to me.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-30">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_4374.JPG" alt="Journey to Guwahati" style="width:100%;height:350px;object-fit:cover;display:block;margin-right: -246px;">
+                  <div class="photo-caption">30 hours for your smile ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_4365.JPG" alt="Finally together" style="width:100%;height:550px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Worth every mile ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(30,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(30,1)">▶</button>
+          <div class="slider-dots" id="dots-30">
+            <div class="dot active" onclick="goSlide(30,0)"></div>
+            <div class="dot" onclick="goSlide(30,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 32 — RIGHT ===== -->
+    <div class="node right" data-index="31">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">January 25, 2026</div>
+        <div class="card-title">The Unofficial Birthday Part 1</div>
+        <div class="card-desc">Due to circumstances we couldn't celebrate, but it's not going to stop us — right here we are racing against each other in go kart.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-31">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_5201.JPG" alt="Go kart racing" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Racing hearts ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_5200.JPG" alt="Nothing stops us" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Nothing stops us ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(31,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(31,1)">▶</button>
+          <div class="slider-dots" id="dots-31">
+            <div class="dot active" onclick="goSlide(31,0)"></div>
+            <div class="dot" onclick="goSlide(31,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 33 — LEFT ===== -->
+    <div class="node left" data-index="32">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">January 25, 2026</div>
+        <div class="card-title">The Unofficial Birthday Final Part</div>
+        <div class="card-desc">After go kart, how can I forget dinner of my Cutii.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-32">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_5292.JPG" alt="Birthday dinner" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">The perfect ending ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_5278.JPG" alt="Dinner with my cutii" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">My Cutii's dinner ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(32,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(32,1)">▶</button>
+          <div class="slider-dots" id="dots-32">
+            <div class="dot active" onclick="goSlide(32,0)"></div>
+            <div class="dot" onclick="goSlide(32,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 34 — RIGHT ===== -->
+    <div class="node right" data-index="33">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">March 1, 2026</div>
+        <div class="card-title">The Birthday Surprise for Me</div>
+        <div class="card-desc">A beautiful birthday surprise for me in car decoration, I never thought someone will love me this much.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-33">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/20260301_002059.jpg" alt="Birthday surprise" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">I never knew love like this ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/20260301_002220.jpg" alt="Car decoration surprise" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">She loves me this much ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(33,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(33,1)">▶</button>
+          <div class="slider-dots" id="dots-33">
+            <div class="dot active" onclick="goSlide(33,0)"></div>
+            <div class="dot" onclick="goSlide(33,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 35 — LEFT ===== -->
+    <div class="node left" data-index="34">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">March 1, 2026</div>
+        <div class="card-title">The Birthday Dhamal</div>
+        <div class="card-desc">We went to Neon Panda to do the fun and adventure on my birthday, loved every bit of it with my love.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-34">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/20260301_135528.jpg" alt="Neon Panda birthday" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Birthday dhamal ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_5532.JPG" alt="Fun and adventure" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Every bit with my love ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(34,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(34,1)">▶</button>
+          <div class="slider-dots" id="dots-34">
+            <div class="dot active" onclick="goSlide(34,0)"></div>
+            <div class="dot" onclick="goSlide(34,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NODE 36 — RIGHT ===== -->
+    <div class="node right" data-index="35">
+      <div class="branch"></div>
+      <div class="trunk-heart"></div>
+      <div class="card">
+        <div class="card-date">March 8, 2026</div>
+        <div class="card-title">Let's Play Holi</div>
+        <div class="card-desc">I gave her a nice surprise visit on Rangpanchmi, after 15 hours of travel when I finally saw her without her knowing — her reaction was worth it.</div>
+        <div class="slider-wrap">
+          <div class="slider-overflow">
+            <div class="slider-track" id="track-35">
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_5604.JPG" alt="Holi surprise" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">Her reaction was priceless ♥</div>
+                </div>
+              </div>
+              <div class="slide">
+                <div class="photo-frame">
+                  <img src="https://raw.githubusercontent.com/drj477/test-kittu/main/IMG_5628.JPG" alt="Rangpanchmi together" style="width:100%;height:300px;object-fit:cover;display:block;">
+                  <div class="photo-caption">15 hours worth every second ♥</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev" onclick="slide(35,-1)">◀</button>
+          <button class="slider-btn next" onclick="slide(35,1)">▶</button>
+          <div class="slider-dots" id="dots-35">
+            <div class="dot active" onclick="goSlide(35,0)"></div>
+            <div class="dot" onclick="goSlide(35,1)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ADD MORE NODES BELOW — copy one block above and fill in your own date! ===== -->
+
+  </div><!-- end .timeline -->
+
+  <!-- Footer -->
+  <div class="footer">
+    <span class="footer-heart">♥</span>
+    <p class="footer-text">& the story continues...</p>
+    <br>
+    <p style="font-size:0.8rem;color:#555;margin-top:8px;letter-spacing:0.1em;">To add a new chapter — open the HTML file and copy any node block.</p>
+  </div>
+</div>
+
+<!-- ======== SVG TREE OVERLAY (decorative branches at joints) ======== -->
+<svg style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.03" xmlns="http://www.w3.org/2000/svg">
+  <filter id="grain">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+  </filter>
+  <rect width="100%" height="100%" filter="url(#grain)" opacity="0.4"/>
+</svg>
+
+<script>
+// ======== STARS ========
+const starsEl = document.getElementById('stars');
+for (let i = 0; i < 120; i++) {
+  const s = document.createElement('div');
+  s.className = 'star';
+  s.style.left = Math.random() * 100 + 'vw';
+  s.style.top  = Math.random() * 100 + 'vh';
+  s.style.animationDuration = (2 + Math.random() * 4) + 's';
+  s.style.animationDelay = (Math.random() * 5) + 's';
+  s.style.opacity = Math.random() * 0.5;
+  starsEl.appendChild(s);
+}
+
+// ======== FLOATING HEARTS ========
+const fhEl = document.getElementById('floatingHearts');
+const heartSymbols = ['♥','♡','❤','💕'];
+for (let i = 0; i < 18; i++) {
+  const h = document.createElement('div');
+  h.className = 'fheart';
+  h.textContent = heartSymbols[i % heartSymbols.length];
+  h.style.left = (Math.random() * 100) + 'vw';
+  h.style.bottom = '-20px';
+  h.style.animationDuration = (8 + Math.random() * 10) + 's';
+  h.style.animationDelay  = (Math.random() * 12) + 's';
+  h.style.fontSize = (10 + Math.random() * 16) + 'px';
+  fhEl.appendChild(h);
+}
+
+// ======== SLIDER ========
+const currentSlide = {};
+const totalSlides = {};
+
+document.querySelectorAll('.slider-track').forEach((track, idx) => {
+  currentSlide[idx] = 0;
+  totalSlides[idx] = track.querySelectorAll('.slide').length;
+});
+
+function updateSlider(id) {
+  const track = document.getElementById('track-' + id);
+  track.style.transform = `translateX(-${currentSlide[id] * 100}%)`;
+  const dots = document.querySelectorAll(`#dots-${id} .dot`);
+  dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide[id]));
+}
+
+function slide(id, dir) {
+  const n = totalSlides[id];
+  currentSlide[id] = (currentSlide[id] + dir + n) % n;
+  updateSlider(id);
+}
+
+function goSlide(id, idx) {
+  currentSlide[id] = idx;
+  updateSlider(id);
+}
+
+// Init all sliders
+Object.keys(currentSlide).forEach(id => updateSlider(id));
+
+// ======== SCROLL REVEAL ========
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.node').forEach(n => observer.observe(n));
+</script>
 </body>
 </html>
